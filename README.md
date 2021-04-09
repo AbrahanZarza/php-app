@@ -1,185 +1,182 @@
-This project is intended as a basic framework that serves as the basis for simple and modular web applications.
+Este proyecto pretende ser un marco básico que sirva de base para aplicaciones web simples y modulares.
 
-For a good development experience, this project provides the developer with tools that allow him to focus on building his project, without going into some tedious implementation details.
+Para una buena experiencia de desarrollo, este proyecto proporciona al desarrollador herramientas que le permiten concentrarse en la construcción de su proyecto, sin entrar en algunos tediosos detalles de implementación.
 
-From the beginning developer to the most experienced, this project can grow with you. Experiment and exploit the full potential of a new application starting from a good base, and even dare to expand this base with new implementations that bring more functionality to the project.
+Desde el desarrollador principiante hasta el más experimentado, este proyecto puede crecer contigo. Experimenta y explota todo el potencial de una nueva aplicación partiendo de una buena base, e incluso atrévete a ampliar esta base con nuevas implementaciones que aporten más funcionalidad al proyecto.
 
-# Getting Started
+# Cómo empezar
 
-To start, you must have a version of `php` 7 or higher installed. Next, you can download or clone this project from this url.
+Para comenzar, debe tener instalada una versión de `php` 7 o superior. A continuación, puede descargar o clonar este proyecto desde esta URL.
 ```
 https://github.com/AbrahanZarza/php-app.git
 ```
 
-## Installation
+## Instalación
 
-Once the project is downloaded, we will install the dependencies via Composer.
+Una vez descargado el proyecto, instalaremos las dependencias a través de Composer.
 ```
 composer install
 ```
 
-The next thing will be to configure our environment file. To do this, the first thing is to create a copy of the example environment file, renaming this copy as `.env`.
+Lo siguiente será configurar nuestro archivo de entorno. Para hacer esto, lo primero es crear una copia del archivo de entorno de ejemplo, renombrando esta copia como `.env`.
 ```
 cp .env.example .env
 ```
-> This file will specify the variables of each environment in which the application is hosted, in this case its local environment.
+> Este archivo especificará las variables de cada entorno en el que se aloja la aplicación, en este caso su entorno local.
 
-Finally, we start a test server with which we can access our web application and start developing.
+Finalmente, iniciamos un servidor de prueba con el que podemos acceder a nuestra aplicación web y empezar a desarrollar.
 ```
 php -S localhost:8080 public/index.php
 ```
 
-## Directory Structure
-The default application structure is intended to provide a starting point for a small and fast web applications. There are some restrictions but you are free to organize your web application however you need.
+## Estructura
+La estructura de la aplicación predeterminada está destinada a proporcionar un punto de partida para aplicaciones web pequeñas y rápidas. Existen algunas restricciones, pero puede organizar su aplicación web como lo necesite.
 
-### Root directory
+### Directorio raíz
 
-#### 📂 `app` directory
-This directory contains the core code of your application. Almost all of the classes in your application will be in this directory.
+#### 📂 Directorio `app`
+Este directorio contiene el código central de su aplicación. Casi todas las clases de su aplicación estarán en este directorio.
 
-#### 📂 `bootstrap` directory
-This directory contains the helper.php file witch gives useful methods for the application. If needed, you can add more helper files here but remember to add that into `autoload.files` section of `composer.json` file.
+#### 📂 Directorio `bootstrap`
+Este directorio contiene el archivo helper.php que proporciona métodos útiles para la aplicación. Si es necesario, puede agregar más archivos de ayuda aquí, pero recuerde agregarlos en la sección `autoload.files` del archivo` composer.json`.
 
-#### 📂 `config` directory
-This directory should contains all of your application's configuration files. By the moment, the main application's routes file is here.
+#### 📂 Directorio `config`
+Este directorio debe contener todos los archivos de configuración de su aplicación. Por el momento, el archivo de rutas de la aplicación principal está aquí.
 
-#### 📂 `public` directory
-This directory contains the entry point file of the web application, which configures autoloading files. This directory should also store assets files such as images, Javascript and CSS.
+#### 📂 Directorio `public`
+Este directorio contiene el archivo de punto de entrada de la aplicación web, que configura los archivos de carga automática. Este directorio también debe almacenar archivos de activos como imágenes, JavaScript y CSS.
 
-### The `app` directory
-This directory contains the majority code of your application. By default, this directory is namespaced under App, using the PSR-4 standard in `composer.json` file.
+### El directorio `app`
+Este directorio contiene la mayor parte del código de su aplicación. De forma predeterminada, este directorio tiene un espacio de nombres en App, utilizando el estándar PSR-4 en el archivo `composer.json`.
 
-By default, this directory contains additional directories such as Controllers and Classes, that provide application functionality.
+De forma predeterminada, este directorio contiene directorios adicionales, como Controladores y Clases, que brindan funcionalidad a la aplicación.
 
-#### 📂 `Classes` directory
-This directory contains files that give basic logic to your web application. Normally, you don't need to edit or create new files inside this directory.
+#### 📂 Directorio `Classes`
+Este directorio contiene archivos que dan lógica básica a su aplicación web. Normalmente, no es necesario editar o crear nuevos archivos dentro de este directorio.
 
-#### 📂 `Controllers` directory
-This directory contains the main actions that would be executed when any route in your application will be requested.
+#### 📂 Directorio `Controllers`
+Este directorio contiene las principales acciones que se ejecutarían cuando se solicite cualquier ruta en su aplicación.
 
-#### 📂 `Exceptions` directory
-This directory contains types of errors that your application, at any point, can throw. It was meant to identify and debug any application errors.
+#### 📂 Directorio `Exceptions`
+Este directorio contiene tipos de errores que su aplicación, en cualquier momento, puede generar. Estaba destinado a identificar y depurar cualquier error de la aplicación.
 
-#### 📂 `Middlewares` directory
-This directory contains mechanisms that check actions to execute, or not, other subsequent actions in your application, for example authentication actions.
+#### 📂 Directorio `Middlewares`
+Este directorio contiene mecanismos que verifican acciones para ejecutar, o no, otras acciones posteriores en su aplicación, por ejemplo, acciones de autenticación.
 
 
-# Basics
+# Lo básico
 
-## Routing
-The base project provides tools to create entry points to the application in a simple and clean way.
+## Rutas
+El proyecto base proporciona herramientas para crear puntos de entrada a la aplicación de una manera simple y limpia.
 
-At the moment, the methods it accepts are: `GET`,` POST`, `PUT` and` DELETE`. These are the most used and basic for the creation of any type of web application.
+Por el momento, los métodos que acepta son: `GET`,` POST`, `PUT` y` DELETE`. Estos son los más utilizados y básicos para la creación de cualquier tipo de aplicación web.
 
-### Basic routing
-A basic example can be the one shown below.
+### Enrutamiento básico
+Un ejemplo básico puede ser el que se muestra a continuación.
 ```
 Router::route(Request::METHOD_GET, '/', function (Request $request) {
     response('Hello app!');
 });
 ```
 
-As you can see, the project listens for a `GET` request to the` / `path, if this request arrives, it will return the text string shown on the screen as a response.
+Como puede ver, el proyecto escucha una solicitud `GET` a la ruta` /`, si esta solicitud llega, devolverá la cadena de texto que se muestra en la pantalla como respuesta.
 
-### Route to controller
-Another even cleaner way to implement routes in your application is to directly call a controller action.
+### Enrutamiento a controlador
+Otra forma aún más limpia de implementar rutas en su aplicación es llamar directamente a una acción de controlador.
 
-So far we have seen how to execute a function when a certain route is requested, but the project also offers the option of directly calling a method of a controller.
+Hasta ahora hemos visto cómo ejecutar una función cuando se solicita una determinada ruta, pero el proyecto también ofrece la opción de llamar directamente a un método de un controlador.
 
-To do this, we need to create a controller in the `app / controllers` directory. Then we will specify the path as shown below.
+Para hacer esto, necesitamos crear un controlador en el directorio `app / controllers`. Luego especificaremos la ruta como se muestra a continuación.
 ```
 Router::route(Request::METHOD_GET, '/', 'IndexController@someMethod');
 ```
-> In this call we are requesting the `/` path for `GET` to invoke the` someMethod` method of the `IndexController` controller.
+> En esta llamada estamos solicitando la ruta `/` para que `GET` invoque el método` someMethod` del controlador` IndexController`.
 
 ## Middlewares
-Middleware is a mechanism that the project uses to execute code snippets as a check prior to an action.
+Un middleware es un mecanismo que utiliza el proyecto para ejecutar fragmentos de código como verificación antes de una acción.
 
-If the result of this check is successful, the main action that precedes it will be executed.
+Si el resultado de esta comprobación es satisfactorio, se ejecutará la acción principal que la precede.
 
-A very clear example of middleware is user authentication. For the example we can see the middleware in the path `app / Middlewares` called` Auth.php`.
+Un ejemplo muy claro de middleware es la autenticación de usuarios. Para el ejemplo, podemos ver el middleware en la ruta `app / Middlewares` llamado` Auth.php`.
 
-As you can see, all the middleware that we create will have the `__invoke` method. Within this is where the middleware functionality will run.
+Como puede ver, todo el middleware que creemos tendrá el método `__invoke`. Dentro de esto es donde se ejecutará la funcionalidad del middleware.
 
-In this example we are specifying that the `X-Api-Key` header should reach us by the request.
+En este ejemplo, estamos especificando que el encabezado `X-Api-Key` debe llegarnos a través de la solicitud.
 
-Finally, to apply the middleware to our application routes we will specify it as the fourth parameter, indicating the name of the class of our middleware as follows.
-
+Finalmente, para aplicar el middleware a nuestras rutas de aplicación lo especificaremos como cuarto parámetro, indicando el nombre de la clase de nuestro middleware de la siguiente manera.
 ```
 Router::route(Request::METHOD_GET, '/', function (Request $request) {
 	response('Hello app!');
 }, Auth::class);
 ```
 
-## Controllers
-They are the files that execute the actions of the web application and are defined in the path `app / Controllers`.
+## Controladores
+Son los archivos que ejecutan las acciones de la aplicación web y están definidos en la ruta `app / Controllers`.
 
-These are normally called by routes, so that they receive an input, process the information and return an output with the processed information.
+Estos normalmente son llamados por rutas, de modo que reciben una entrada, procesan la información y devuelven una salida con la información procesada.
 
-We can create as many controllers as we need, feel free to implement as many as you need.
+Podemos crear tantos controladores como necesitemos, no dude en implementar tantos como necesite.
 
-## Requests
-All the requests made to our web application have an object of the class `Request` associated with them.
+## Peticiones
+Todas las peticiones realizadas a nuestra aplicación web tienen asociado un objeto de la clase `Solicitud`.
 
-This object provides us with useful information about the request, information such as the method, the parameters and all kinds of additional information.
+Este objeto nos proporciona información útil sobre la petición, información como el método, los parámetros y todo tipo de información adicional.
 
-For example, to be able to read a parameter, this would be an implementation of that action.
-
+Por ejemplo, para poder leer un parámetro, esto sería una implementación de esa acción.
 ```
 public function doSomething(Request $request) {
     echo $request->get('param_name');
 }
 ```
-> The `$request` object will obtain the requested parameter both by inspecting the query string and the request body.
+> El objeto `$request` obtendrá el parámetro solicitado tanto al inspeccionar la cadena de consulta como el cuerpo de la solicitud.
 
-## Responses
-In response to a request in the application, we have a function in the `bootstrap / helper.php` file called` response`.
+## Respuestas
+En respuesta a una solicitud en la aplicación, tenemos una función en el archivo `bootstrap / helper.php` llamada` response`.
 
-This function is in charge of treating the data it receives to give a coded response to the client.
+Esta función se encarga de tratar los datos que recibe para dar una respuesta codificada al cliente.
 
-Allowed parameters:
+Parámetros permitidos:
 
-- `$data` - required - It will be the answer that will reach the customer.
-- `$status` - optional - It is the HTTP standard code for the response.
-- `$headers` - optional - They are the headers that will have that answer associated with it.
+- `$data` - requerido - Será la respuesta que llegará al cliente.
+- `$status` - opcional - Es el código estándar HTTP para la respuesta.
+- `$headers` - opcional - Son los encabezados que tendrán esa respuesta asociada.
 
-### `response` method Examples
+### Ejemplos de `response`
 
-#### Basic example with defaults
+#### Ejemplo básico
 ```
 response(['foo' => 'bar']);
 ```
 
-#### Example with status code
+#### Ejemplo con status code
 ```
 response('User not authorized!', \App\Classes\Response::HTTP_UNAUTHORIZED);
 ```
 
-#### Full example
+#### Ejemplo completo
 ```
 response(['foo' => 'bar'], \App\Classes\Response::HTTP_SUCCESS, ['Content-Type' => 'application/json']);
 ```
 
-## Debugging
-As a debugging utility we have, in the `bootstrap / helper.php` file, we have the` debug` and `dddebug` methods.
+## Depuración
+Como utilidad de depuración tenemos, en el archivo `bootstrap / helper.php`, tenemos los métodos` debug` y` dddebug`.
 
-### `debug` method
-This method is used to print, in detail, the content of a variable. This will be extremely useful when developing our web application.
+### Método `debug`
+Este método se utiliza para imprimir, en detalle, el contenido de una variable. Esto será de gran utilidad a la hora de desarrollar nuestra aplicación web.
 
-### `dddebug` method
-This method works the same as `debug`, but unlike the previous one, by invoking this method we will be stopping the execution of the code when printing the content of the variable to be debugged.
+### Método `dddebug`
+Este método funciona igual que `debug`, pero a diferencia del anterior, al invocar este método estaremos deteniendo la ejecución del código al imprimir el contenido de la variable a depurar.
 
+# Despliegue en producción
+Para implementar nuestro código en producción, se deben considerar un par de criterios:
 
-# Deploy in production
-To deploy our code in production, a couple of criteria must be considered:
+- Tener instalada una versión de `php` 7 o superior.
+- Tener instalado un servidor web, entre los más comunes: `nginx` o` apache`.
 
-- Have a version of `php` 7 or higher installed.
-- Have a web server installed, among the most common: `nginx` or` apache`.
+Independientemente de la elección, debemos indicar a nuestro servidor web que el punto de entrada de nuestra aplicación será desde el directorio `público`, con el archivo` index.php`.
 
-Regardless of the choice, we must indicate to our web server that the entry point of our application will be from the `public` directory, with the` index.php` file.
-
-## `nginx` deploy example file
-Here is an example of what a basic deployment file would look like for `nginx` web servers.
+## Ejemplo de fichero de despliegue `nginx`
+A continuación se muestra un ejemplo de cómo se vería un archivo de implementación básico para los servidores web `nginx`.
 ```
 server {
     listen 80;
@@ -202,10 +199,10 @@ server {
     }
 }
 ```
-> Being `/ var / www / html` the default path that nginx will have configured in sites-enabled.
+> Siendo `/var/www/html` la ruta predeterminada que nginx habrá configurado en los sites-enabled.
 
-## `apache` deploy example file
-Here is an example of a basic deployment file with `apache` and` virtual hosts`.
+## Ejemplo de fichero de despliegue `apache`
+A continuación se muestra un ejemplo de un archivo de implementación básico con `apache` y` virtual hosts`.
 ```
 <VirtualHost *:80>
     DocumentRoot "/var/www/html/public"
@@ -214,4 +211,4 @@ Here is an example of a basic deployment file with `apache` and` virtual hosts`.
     # Other directives here ...
 </VirtualHost>
 ```
-> Being `/ var / www / html` the default path that nginx will have configured in sites-enabled.
+> Siendo `/var/www/html` la ruta predeterminada que apache habrá configurado en sus sites-enabled.
