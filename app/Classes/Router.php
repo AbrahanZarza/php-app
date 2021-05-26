@@ -4,7 +4,6 @@ namespace App\Classes;
 
 use ReflectionFunction;
 use ReflectionMethod;
-use ReflectionException;
 
 class Router
 {
@@ -53,9 +52,9 @@ class Router
                             $funcArgs[$callbackArgName] = $routeParams[$callbackArgName];
                         }
                     }
-                }
 
-                $funcArgs['request'] = new Request(!in_array($requestMethod, [Request::METHOD_GET, Request::METHOD_DELETE]));
+                    $funcArgs['request'] = new Request(!in_array($requestMethod, [Request::METHOD_GET, Request::METHOD_DELETE]));
+                }
 
                 call_user_func_array($callback, $funcArgs);
                 die;
@@ -111,9 +110,9 @@ class Router
                             $funcArgs[$callbackArgName] = $routeParams[$callbackArgName];
                         }
                     }
-                }
 
-                $funcArgs['request'] = new Request(!in_array($requestMethod, [Request::METHOD_GET, Request::METHOD_DELETE]));
+                    $funcArgs['request'] = new Request(!in_array($requestMethod, [Request::METHOD_GET, Request::METHOD_DELETE]));
+                }
 
                 call_user_func_array([new $controllerClass(), $controllerMethod], $funcArgs);
 
