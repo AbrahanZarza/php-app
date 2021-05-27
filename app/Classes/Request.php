@@ -14,7 +14,7 @@ class Request
 
     public function __construct($withBody = false)
     {
-        $this->params = $_GET;
+        $this->params = array_merge($_GET, $_POST);
 
         if ($withBody) {
             $this->params = array_merge($this->params, $this->read_body_params());
@@ -38,9 +38,7 @@ class Request
 
     private function read_body_params(): array
     {
-        $json = json_decode(file_get_contents('php://input'), true);
-
-        return !empty($json) ? $json : [];
+        return json_decode(file_get_contents('php://input'), true);
     }
 
 }
