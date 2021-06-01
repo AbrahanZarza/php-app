@@ -38,7 +38,14 @@ class Request
 
     private function read_body_params(): array
     {
-        return json_decode(file_get_contents('php://input'), true);
+        $rawBody = file_get_contents('php://input');
+        $body = json_decode($rawBody, true);
+        
+        if (empty($body)) {
+            parse_str($rawBody, $body);
+        }
+
+        return $body ?? [];
     }
 
 }
